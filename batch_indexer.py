@@ -57,9 +57,10 @@ def index(solr_core, data_dir='.', solr_url='http://localhost:8983/solr',
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('data_dir')
-    parser.add_argument('-s', '--host', dest = 'solr_host', help = 'the solr host url')
-    parser.add_argument('-c', '--core', dest = 'solr_core', help = 'the solr core',
-            required = True)
-    parser.add_argument('-b', '--batch-size', help = 'number of docs in a batch')
+    parser.add_argument('-s', '--host', dest='solr_host', help='the solr host url')
+    parser.add_argument('-c', '--core', dest='solr_core', help='the solr core',
+            required=True)
+    parser.add_argument('-b', '--batch-size', type=int, default=100,
+            help='number of docs in a batch (default 100)') 
     args = parser.parse_args()
     index(args.solr_core, args.data_dir, args.solr_host, args.batch_size)
