@@ -46,9 +46,12 @@ def index(solr_core, data_dir='.', solr_url='http://localhost:8983/solr',
     # commit all docs
     print('Batch indexing finished.')
     print('Commiting index')
+    start = time.time()
     commit = requests.get(url = '{}?commit=true'.format(solr_url))
+    end = time.time()
     print(commit.status_code)
     print(commit.text)
+    print('Commit complete. Took {}s'.format(end - start))
 
 
 if __name__ == '__main__':
